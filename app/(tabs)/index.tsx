@@ -1,10 +1,17 @@
-import useTheme from "@/hooks/useTheme";
+import useTheme, { ColorScheme } from "@/hooks/useTheme";
 import { useMutation, useQuery } from "convex/react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { api } from "@/convex/_generated/api";
+import { createHomeStyles } from "@/assets/styles/home.styles";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { LinearGradient } from 'expo-linear-gradient';
+import Header from "@/components/Header";
+
 export default function Index() {
 
-  const { toggleDarkMode } = useTheme();
+  const { toggleDarkMode, colors } = useTheme();
+
+  const homestyles = createHomeStyles(colors)
 
   const todos = useQuery(api.todos.getTodos);
   const addTodo = useMutation(api.todos.addTodos);
@@ -12,35 +19,17 @@ export default function Index() {
   console.log(todos)
 
   return (
-    <View
-      style={styles.container}
-    >
-      <Text style={styles.heading}>Hiii Hemant This is Your First Mobile Application.</Text>
-      <TouchableOpacity onPress={toggleDarkMode}>
-        <Text>Toggle Dark Mode</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => addTodo({ text: "first todo" })}>
-        <Text>Add todo</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => clearAllTodo()}>
-        <Text>Clear All todo</Text>
-      </TouchableOpacity>
-    </View >
+    <LinearGradient colors={colors.gradients.background} style={homestyles.container}>
+
+      <SafeAreaView style={homestyles.safeArea}
+
+      >
+        <Header />
+
+
+      </SafeAreaView >
+    </LinearGradient>
   );
 }
 
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-
-
-  },
-  heading: {
-    fontSize: 16,
-
-  }
-
-})
