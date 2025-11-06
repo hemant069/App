@@ -35,11 +35,7 @@ const Header = () => {
                 <View style={homestyles.progressContainer}>
                     <View style={homestyles.progressBarContainer} >
                         <View style={homestyles.progressBar}>
-                            <LinearGradient colors={colors.gradients.success} style={[homestyles.progressFill, { width: `${progressPercentage}` }]} />
-
-
-
-
+                            <LinearGradient colors={colors.gradients.success} style={[homestyles.progressFill, { width: `${progressPercentage}%` }]} />
                         </View>
                         <Text style={homestyles.progressText}>{Math.round(progressPercentage)}%</Text>
                     </View>
