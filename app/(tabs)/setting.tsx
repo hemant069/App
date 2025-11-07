@@ -6,11 +6,12 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import ProgressState from '@/components/ProgressState';
+import Preferences from '@/components/Preferences';
+import DangerZone from '@/components/DangerZone';
 
 const SettingScreen = () => {
 
-    const [isAutoSync, setisAutoSync] = useState(true);
-    const [isNotificationEnabled, setisNotificationEnabled] = useState(true)
+
 
     const { isDarkmode, colors, toggleDarkMode } = useTheme()
 
@@ -43,6 +44,14 @@ const SettingScreen = () => {
 
                 >
                     <ProgressState />
+
+                    {/* Preferences */}
+
+                    <Preferences />
+
+                    {/* DangerZone */}
+
+                    <DangerZone />
 
                 </ScrollView>
 
